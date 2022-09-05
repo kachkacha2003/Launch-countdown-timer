@@ -8,35 +8,49 @@ let text = 60;
 let text1 = 13;
 let text2 = 23;
 let text3 = 59;
+let year = 2023;
+let countDownDate = new Date(`Jan 1, ${year} 00:00:00 `).getTime();
 
-let time = setInterval(() => {
-  first.textContent = text1;
-  second.textContent = text2;
+let today = new Date().getTime();
 
-  if (text2 == 0 && text3 == 0 && text == 0) {
-    first.textContent = text1;
-  }
+let distance = countDownDate - today;
+let countdays = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-  text--;
-  if (text == 0 && text1 == 0 && text2 == 0 && text3 == 0) {
-    clearInterval(time);
-  }
-  third.textContent = text3;
+let counthours = Math.floor(
+  (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+);
+let countminutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+let countseconds = Math.floor((distance % (1000 * 60)) / 1000);
+first.textContent = countdays;
+second.textContent = counthours;
+third.textContent = countminutes;
+forth.textContent = countseconds;
+let count = setInterval(function () {
+   countDownDate = new Date(`Jan 1, ${year} 00:00:00 `).getTime();
 
-  forth.textContent = text;
+   today = new Date().getTime();
 
-  if (text2 == 0 && text3 == 0 && text == 0) {
-    text1--;
-    text2 = 24;
-  }
+   distance = countDownDate - today;
+   countdays = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-  if (text3 == 0 && text == "0") {
-    text2--;
-    text3 = 60;
-  }
+   counthours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+   countminutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  countseconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  if (text == 0) {
-    text3--;
-    text = 60;
+  
+
+  first.textContent = countdays;
+  second.textContent = counthours;
+  third.textContent = countminutes;
+  forth.textContent = countseconds;
+  if (
+    first.textContent == 0 &&
+    second.textContent == 0 &&
+    third.textContent == 0 &&
+    forth.textContent == 0
+  ) {
+    year++;
   }
 }, 1000);
